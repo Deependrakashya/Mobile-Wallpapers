@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const baseApi = axios.create({
-  baseURL: 'https://api.pexels.com/v1',  // Corrected key name
+  baseURL: 'https://api.pexels.com/v1', 
   responseType: 'json',
-  timeout: 10000,  // Optional, adjust based on your needs
+  timeout: 10000,  
 });
 
 export default baseApi;
