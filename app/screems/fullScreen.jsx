@@ -15,25 +15,41 @@ import {shareAsync} from 'expo-sharing'
 // import downloadImage from "../api/downloadImage";
 
 export default function FullScreen({ route }) {
-console.log(route);
-  const { image } = route.params; // Destructure the image from route.params
+// console.log("params " ,route.params.image);
+   let Orignal=route.params.image.original;
+   
+  const  image  = route.params.image.large2x; // Destructure the image from route.params
   const [ImgUrl, setImgUrl] = useState(image);
   const [loading, setLoading] = useState(true);
   const [Downloading, setDownLoading] = useState(false);
-  const [DownladText, setDownladText] = useState('Download')
+  const [DownladTextOriginal, setDownladTextOrginal] = useState('Download Original')
+  const [DownladTextNormal, setDownladTextNormal] = useState('Download Normal')
  
   useEffect(() => {
     setImgUrl(image)
     setLoading(true)
-    setDownladText('Downlad')
-  }, [image, handleDownload])
+    setDownladTextNormal('Download Normal')
+    setDownladTextOrginal('Download Original')
+  
+  }, [image, ImgUrl])
+
+  const OriginalDownload =(link)=>{
+    handleDownload(link)
+    setDownladTextOrginal('Downloaded Successfully')
+  }
+   const NormalDownload =(link)=>{
+    handleDownload(link)
+    setDownladTextNormal('Downloaded Successfully')
+  }
+
+
   
   
-  const handleDownload = async () => {
+  const handleDownload = async (size) => {
     setDownLoading(true)
    let filename="IMG-9580552959..jpeg";
     const result= await FileSystem.downloadAsync(
-      image,
+      size,
       FileSystem.documentDirectory+filename
     )
 
@@ -50,14 +66,16 @@ console.log(route);
           await FileSystem.writeAsStringAsync(uri,base64,{encoding:FileSystem.EncodingType.Base64})
         }).catch(e => console.log(e))
         setDownLoading(false)
-        setDownladText("Downladed SuccessFully")
+       
       }
+      // if the storage access is denied than save with share options
       else  shareAsync(uri)
-  
+     
       setDownLoading(false)
     }
+    // other plateform like ios
     else{
-
+      
       shareAsync(uri)
       setDownLoading(false)
     }
@@ -71,6 +89,7 @@ console.log(route);
         height: "100%",
         justifyContent: "center",
         alignItems: "center",
+        
       }}
     >
       {loading && (
@@ -118,11 +137,16 @@ console.log(route);
             color="#0000ff"
             style={styles.loader}
           />:
+          <View style={{ width:'100%', flexDirection:'row',justifyContent:'space-between'}}>
         <TouchableOpacity style={styles.buttons}
-		 onPress={handleDownload}
+		 onPress={()=>NormalDownload(ImgUrl)}
 		>
-         <Text style={styles.text}>{DownladText}</Text> 
-        </TouchableOpacity>}
+         <Text style={styles.text}>{DownladTextNormal}</Text>
+        </TouchableOpacity><TouchableOpacity style={styles.buttons}
+		 onPress={()=>OriginalDownload(Orignal)}
+		>
+           <Text style={styles.text}>{DownladTextOriginal}</Text>
+        </TouchableOpacity></View>}
       </View>
     </View>
   );
@@ -136,7 +160,7 @@ const styles = StyleSheet.create({
   buttons: {
     backgroundColor: "green",
     margin: RFValue(5),
-    width: "90%",
+    width: "40%",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: RFValue(20),

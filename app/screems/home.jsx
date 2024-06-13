@@ -13,10 +13,11 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
 
 
+
 export default function Home() {
   const [Images, setImages] = useState([]);
   const [Error, setError] = useState(false);
-  const [loader, setloader] = useState(false)
+  const [loader, setloader] = useState(true)
   const navigation = useNavigation();
   const page = Math.floor(Math.random() * 100) + 1;
   useEffect(() => {
@@ -27,12 +28,17 @@ export default function Home() {
         const res = await homeScreenImages(page);
 
         setImages(res.data.photos);
+      
       } catch (error) {
         console.error(error);
+        setError(true)
+        setloader(false)
       }
     };
     fetchImages();
-  }, []);
+
+  }, [clickImage]);
+  
 
 
 
@@ -73,7 +79,7 @@ export default function Home() {
           {Images.map((img) => (
             <TouchableOpacity
               key={img.id}
-              onPress={() => clickImage(img.src.large2x)}
+              onPress={() => clickImage(img.src)}
             >
               <Image source={{ uri: img.src.medium }} style={styles.image} 
                onLoadEnd={()=>setloader(false)}
@@ -92,9 +98,11 @@ const styles = StyleSheet.create({
     color: "red",
   },
   scrollContainer: {
-    backgroundColor: "grey",
+    backgroundColor: "white",
     padding: 10,
     marginTop: RFValue(0),
+   
+    
   },
 
   image: {

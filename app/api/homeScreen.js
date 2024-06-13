@@ -6,16 +6,16 @@ const homeScreenImages = async (num) => {
     const response = await baseApi.get('/curated', {
       params: {
         page: num,
-        per_page: 100,
+        per_page: 80,
       },
       headers: {
         Authorization: `${token}`,
       },
     });
   return response;
-    // console.log(JSON.stringify(response.data, null, 2));  // Beautified JSON output
+   
   } catch (error) {
-    console.error(error);  // Used console.error for error logging
+    console.error(error); 
   }
 };
 

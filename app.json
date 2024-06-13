@@ -8,7 +8,7 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/IMG_20240613_203723.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,16 +17,23 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/IMG_20240613_203723.png",
         "backgroundColor": "#ffffff",
-        "permissions": ["android.permission.SCHEDULE_EXACT_ALARM"]
-      }
-     
+        "permissions": [
+          "android.permission.SCHEDULE_EXACT_ALARM"
+        ]
+      },
+      "permissions": [
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_MEDIA_LOCATION"
+      ],
+      "package": "com.deependrakashya.MobileWallpapers"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/icon.png"
     },
     "plugins": [
       "expo-router",
@@ -39,11 +46,16 @@
         }
       ]
     ],
-      
-      
-    
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2f21aa72-2a2b-4146-97d3-6baf472f5760"
+      }
     }
   }
 }

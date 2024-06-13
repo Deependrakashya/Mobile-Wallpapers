@@ -22,6 +22,7 @@ export default function Explore() {
         const res = await search("love");
      
         setResults(res.data.photos);
+       
       } catch (error) {
         console.error(error);
       }
@@ -78,7 +79,7 @@ export default function Explore() {
           {Results.map((img) => (
             <TouchableOpacity
               key={img.id}
-              onPress={() => clickImage(img.src.large2x)}
+              onPress={() => clickImage(img.src)}
             >
               <Image source={{ uri: img.src.medium }} style={styles.image} 
               onLoadEnd={()=>setloader(false)}
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: RFValue(30),
     alignItems: "center",
-    backgroundColor: "grey",
+    backgroundColor: "white",
     height: "100%",
   },
   title: {
