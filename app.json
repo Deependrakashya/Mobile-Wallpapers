@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Mobile-Wallpapers",
+    "name": "Mobile Wallpapers",
     "slug": "Mobile-Wallpapers",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,15 +18,13 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/IMG_20240613_203723.png",
-        "backgroundColor": "#ffffff",
-        "permissions": [
-          "android.permission.SCHEDULE_EXACT_ALARM"
-        ]
+        "backgroundColor": "#ffffff"
       },
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
-        "android.permission.ACCESS_MEDIA_LOCATION"
+        "android.permission.ACCESS_MEDIA_LOCATION",
+        "android.permission.SCHEDULE_EXACT_ALARM"
       ],
       "package": "com.deependrakashya.MobileWallpapers"
     },
