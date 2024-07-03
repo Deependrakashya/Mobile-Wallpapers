@@ -1,4 +1,6 @@
-# Welcome to your Expo app 👋
+# Welcome to Mobile wallpapers Expo app 👋
+### This app is wallpapers app which allows user to search and download photos from the internet to directly phone storage 
+## Try App from [play Store](https://play.google.com/store/apps/details?id=com.deependrakashya.MobileWallpapers)
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
